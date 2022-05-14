@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
 
@@ -26,7 +27,15 @@ class _Templates_PagesState extends State<Templates_Pages> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text("Templates",
+          style: GoogleFonts.outfit(
+            fontSize: 20,
+            color: Colors.white,
+            fontWeight: FontWeight.bold
+        ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -45,7 +54,6 @@ class _Templates_PagesState extends State<Templates_Pages> {
                       );
                     },
                     child: Container(
-                      // ignore: prefer_const_constructors
                         margin:  EdgeInsets.only(right: 30,left: 20),
                         width: MediaQuery.of(context).size.width*0.7,
                         height: MediaQuery.of(context).size.height,
@@ -77,8 +85,8 @@ class _Templates_PagesState extends State<Templates_Pages> {
                             Positioned(
                               bottom: 30,
                               left: MediaQuery.of(context).size.width/3.5,
-                              child: const Text("JOB",
-                                style: TextStyle(
+                              child:  Text("JOB",
+                                style: GoogleFonts.robotoSlab(
                                     fontSize: 30,
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold
@@ -128,8 +136,8 @@ class _Templates_PagesState extends State<Templates_Pages> {
                             Positioned(
                               bottom: 30,
                               left: MediaQuery.of(context).size.width/6,
-                              child: const Text("Freelance",
-                                style: TextStyle(
+                              child:  Text("Freelance",
+                                style: GoogleFonts.robotoSlab(
                                     fontSize: 30,
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold
@@ -178,13 +186,13 @@ class _Templates_PagesState extends State<Templates_Pages> {
                             ),
                             Positioned(
                               bottom: 30,
-                              left: MediaQuery.of(context).size.width/6,
-                              child: const Text("Freelance",
-                                style: TextStyle(
+                              left: MediaQuery.of(context).size.width/5,
+                              child:  Text("Collage",
+                                style: GoogleFonts.outfit(
                                     fontSize: 30,
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold
-                                ),
+                                )
                               ),
                             ),
                           ],

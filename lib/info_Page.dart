@@ -3,6 +3,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:untitled6/templates_page.dart';
@@ -67,65 +68,41 @@ class _user_InfoState extends State<user_Info> {
           child: Column(
             children: [
               _image !=null
-              ? ClipOval(
-                child: Container(
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        bottom: 0,
-                        right: 4,
-                        child: Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.blueAccent,
-                              border: Border.all(width: 4,color: Colors.white)
-                          ),
-                          child: const Icon(Icons.add_a_photo,color: Colors.white,size: 20,),
-                        ),
-                      ),
-                      Image.file(_image!,
-                        width: MediaQuery.of(context).size.width/3.5,
-                        height: MediaQuery.of(context).size.height/7,
-                        fit: BoxFit.cover,),
-                    ],
-                  ),
-                )
+                  ? ClipOval(
+                child: Image.file(_image!,
+                  width: MediaQuery.of(context).size.width/3.5,
+                  height: MediaQuery.of(context).size.height/7,
+                  fit: BoxFit.cover,),
               )
-              : Stack(
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width/3.5,
-                      height: MediaQuery.of(context).size.height/7.3,
-                      decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(100),
-                          image: const DecorationImage(
-                              image: AssetImage("assets/images/cv3.jpg"),
-                              fit: BoxFit.cover
-                          )
+              : imageProfile(),
+
+              const SizedBox(height: 30,),
+
+              GestureDetector(
+                onTap: (){
+                  showModalBottomSheet(
+                      context:context,
+                      builder: (builder) => Alertbutton());
+                },
+                child: Container(
+                  height: 45,
+                  width: MediaQuery.of(context).size.width/3.0,
+                  decoration:  BoxDecoration(
+                    color: Colors.blueAccent,
+                    borderRadius: BorderRadius.circular(8)
+                  ),
+                  child: const Center(
+                    child: Text("select image",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 17
+
                       ),
                     ),
-                    Positioned(
-                      bottom: 0,
-                      right: 4,
-                      child: GestureDetector(
-                        onTap: ()=> getImage(ImageSource.camera),
-                        child: Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.blueAccent,
-                              border: Border.all(width: 4,color: Colors.white)
-                          ),
-                          child: const Icon(Icons.add_a_photo,color: Colors.white,size: 20,),
-                        ),
-                      ),
-                    )
-                  ],
+                  ),
                 ),
+              ),
 
               Padding(
                 padding: const EdgeInsets.only(top: 30),
@@ -196,6 +173,22 @@ class _user_InfoState extends State<user_Info> {
                               hintText: "Location",
                               hintStyle: GoogleFonts.robotoSlab(color: Colors.grey)
                           ),
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            border: Border(top: BorderSide(
+                                color: Colors.grey.shade300
+                            ))
+                        ),
+                        child: TextField(
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Languages",
+                              hintStyle: GoogleFonts.robotoSlab(color: Colors.grey)
+                          ),
+                          maxLines: 2,
                         ),
                       ),
                     ],
@@ -335,7 +328,7 @@ class _user_InfoState extends State<user_Info> {
                         )
                     );
                   },
-                  height: MediaQuery.of(context).size.height/15,
+                  height: MediaQuery.of(context).size.height/12,
                   minWidth: double.infinity,
                   color: Colors.blueAccent,
                   shape: RoundedRectangleBorder(
@@ -379,6 +372,91 @@ class _user_InfoState extends State<user_Info> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       color: (selected == index) ? Colors.blueAccent : Colors.grey,
       padding: const EdgeInsets.only(top: 10,bottom: 10,left: 20,right: 20),
+    );
+  }
+
+
+
+
+  // --------- 2 WIDGET FOR IMAGE ------------
+
+  Widget imageProfile() {
+    return Center(
+      child: Stack(
+        children: [
+           const CircleAvatar(
+            radius: 50.0,
+            child: Icon(Iconsax.gallery_add,color: Colors.white,size: 40,),
+            backgroundColor: Colors.black,
+          ),
+        ],
+      ),
+    );
+  }
+  Widget Alertbutton() {
+    return Container(
+      height: 100,
+      width: MediaQuery.of(context).size.width,
+      margin: const EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 20
+      ),
+      child: Column(
+        children: [
+          Text("Choose profile image",
+            style: GoogleFonts.roboto(
+              fontSize: 20,
+              fontWeight: FontWeight.bold
+            ),
+          ),
+          const SizedBox(height: 20,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              MaterialButton(
+                onPressed: (){
+                  getImage(ImageSource.camera);
+                },
+                child: Row(
+                  children: [
+                    const Icon(Iconsax.camera5),
+                    const SizedBox(width: 10,),
+                    Text("Camera",
+                      style: GoogleFonts.roboto(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15
+                      ),
+                    )
+                  ],
+                )
+              ),
+              Container(
+                width: 2,
+                height: 30,
+                margin: const EdgeInsets.only(left: 25,right: 25),
+                color: Colors.black,
+              ),
+              MaterialButton(
+                  onPressed: (){
+                    getImage(ImageSource.gallery);
+                  },
+                  child: Row(
+                    children: [
+                      const Icon(Iconsax.gallery5,),
+                      const SizedBox(width: 10,),
+                      Text("Gallery",
+                        style: GoogleFonts.roboto(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15
+                        ),
+                      )
+                    ],
+                  )
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 }
