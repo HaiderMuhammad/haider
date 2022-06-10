@@ -92,7 +92,7 @@ class _Templates_PagesState extends State<Templates_Pages> {
                   GestureDetector(
                     onTap: (){
                       Navigator.push(context,
-                          MaterialPageRoute(builder:(context) => const Page2()
+                          MaterialPageRoute(builder:(context) =>  Page2()
                           )
                       );
                     },

@@ -41,7 +41,7 @@ dependencies:
   flutter_icons: ^1.1.0
   flutter_svg: ^1.0.0
   share: ^2.0.4
-  path_provider: ^2.0.9
+  path_provider:
   sqflite: ^2.0.2
   path:
   country_code_picker: ^2.0.2

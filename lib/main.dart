@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:untitled6/cvPage1.dart';
 import 'package:untitled6/helper/sqldb.dart';
 import 'first_Page.dart';
 
-
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
-
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-
-
   @override
   Widget build(BuildContext context) {
-
-
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
@@ -41,25 +38,23 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   bool securePassword = true;
-
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+late DatabaseHelper db;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    db=DatabaseHelper();
   }
+
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         backgroundColor: Colors.white,
-
-        body: SingleChildScrollView(
-
+        body:
+        // page1(),
+        SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const [
